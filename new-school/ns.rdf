@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/user/ontologies/2026/2/new-school.owl/"
+     xml:base="http://www.semanticweb.org/user/ontologies/2026/2/new-school.owl/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:new-school="http://www.semanticweb.org/user/ontologies/2026/2/new-school.owl#"
+     xmlns:new-school1="https://faithandjs.github.io/ontologies/new-school.owl#"
+     xmlns:new-school2="https://faithandjs.github.io/ontology-ke/new-school#">
+    <owl:Ontology rdf:about="https://faithandjs.github.io/ontology-ke/new-school">
+        <rdfs:comment>school</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#admits -->
+
+    <owl:ObjectProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#admits">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#School"/>
+        <rdfs:range rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+        <rdfs:comment>school admits student</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#employs -->
+
+    <owl:ObjectProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#employs">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#School"/>
+        <rdfs:range rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Staff"/>
+        <rdfs:comment>school employs staff</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#learns -->
+
+    <owl:ObjectProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#learns">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+        <rdfs:range rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Subject"/>
+        <rdfs:comment>student learns the subject</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#teaches -->
+
+    <owl:ObjectProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#teaches">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Teacher"/>
+        <rdfs:range rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Subject"/>
+        <rdfs:comment>teacher teaches a subject</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#joinedON -->
+
+    <owl:DatatypeProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#joinedON">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Staff"/>
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#staffID -->
+
+    <owl:DatatypeProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#staffID">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Staff"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#studentID -->
+
+    <owl:DatatypeProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#studentID">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#teach -->
+
+    <owl:DatatypeProperty rdf:about="https://faithandjs.github.io/ontology-ke/new-school#teach">
+        <rdfs:domain rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Teacher"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Administrative -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Administrative">
+        <owl:equivalentClass rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Maintenence"/>
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Govt -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Govt">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#School"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#House_Keeping -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#House_Keeping">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Junior_Student -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Junior_Student">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Maintenence -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Maintenence">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Staff"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Private -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Private">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#School"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#School -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#School"/>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Senior_Student -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Senior_Student">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Staff -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Staff"/>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Student -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Subject -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Subject"/>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Supporting -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Supporting">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching"/>
+    </owl:Class>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Teacher -->
+
+    <owl:Class rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Teacher">
+        <rdfs:subClassOf rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Staff"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Business -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Business">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Subject"/>
+        <new-school2:learns rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Science"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#GPIC -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#GPIC">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#School"/>
+        <new-school2:admits rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Rick"/>
+        <new-school2:employs rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Tony"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Joya -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Joya">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching"/>
+        <new-school2:joinedON rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-01-01T09:00:00</new-school2:joinedON>
+        <new-school2:staffID>N10001</new-school2:staffID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Morty -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Morty">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Junior_Student"/>
+        <new-school2:joinedON rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-09-15T09:00:00</new-school2:joinedON>
+        <new-school2:studentID>S10002</new-school2:studentID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Mr_Colin -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Mr_Colin">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Teacher"/>
+        <new-school2:teaches rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Business"/>
+        <new-school2:staffID>T10002</new-school2:staffID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Nat -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Nat">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Staff"/>
+        <owl:sameAs rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Tony"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Tony -->
+
+    <rdf:Description rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Tony"/>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Rick -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Rick">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Senior_Student"/>
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Student"/>
+        <new-school2:joinedON rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-01-15T09:00:00</new-school2:joinedON>
+        <new-school2:studentID>S10001</new-school2:studentID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Science -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Science">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Subject"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Summer -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Summer">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Junior_Student"/>
+        <new-school2:learns rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Business"/>
+        <new-school2:joinedON rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-09-15T09:00:00</new-school2:joinedON>
+        <new-school2:studentID>S10002</new-school2:studentID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://faithandjs.github.io/ontology-ke/new-school#Tony -->
+
+    <owl:NamedIndividual rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Tony">
+        <rdf:type rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Teacher"/>
+        <new-school2:teaches rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Rick"/>
+        <new-school2:teaches rdf:resource="https://faithandjs.github.io/ontology-ke/new-school#Science"/>
+        <new-school2:staffID>T10001</new-school2:staffID>
+        <new-school2:teach>Science</new-school2:teach>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Junior_Student"/>
+            <rdf:Description rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Non_Teaching"/>
+            <rdf:Description rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Senior_Student"/>
+            <rdf:Description rdf:about="https://faithandjs.github.io/ontology-ke/new-school#Teacher"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

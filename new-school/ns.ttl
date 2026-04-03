@@ -1,0 +1,236 @@
+@prefix : <http://www.semanticweb.org/user/ontologies/2026/2/new-school.owl/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix new-school: <http://www.semanticweb.org/user/ontologies/2026/2/new-school.owl#> .
+@prefix new-school1: <https://faithandjs.github.io/ontologies/new-school.owl#> .
+@prefix new-school2: <https://faithandjs.github.io/ontology-ke/new-school.owl#> .
+@base <http://www.semanticweb.org/user/ontologies/2026/2/new-school.owl/> .
+
+<https://faithandjs.github.io/ontology-ke/new-school> rdf:type owl:Ontology ;
+                                                       rdfs:comment "school" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#admits
+new-school2:admits rdf:type owl:ObjectProperty ;
+                   rdfs:domain new-school2:School ;
+                   rdfs:range new-school2:Student ;
+                   rdfs:comment "school admits student" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#employs
+new-school2:employs rdf:type owl:ObjectProperty ;
+                    rdfs:domain new-school2:School ;
+                    rdfs:range new-school2:Staff ;
+                    rdfs:comment "school employs staff" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#learns
+new-school2:learns rdf:type owl:ObjectProperty ;
+                   rdfs:domain new-school2:Student ;
+                   rdfs:range new-school2:Subject ;
+                   rdfs:comment "student learns the subject" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#teaches
+new-school2:teaches rdf:type owl:ObjectProperty ;
+                    rdfs:domain new-school2:Teacher ;
+                    rdfs:range new-school2:Subject ;
+                    rdfs:comment "teacher teaches a subject" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#joinedON
+new-school2:joinedON rdf:type owl:DatatypeProperty ;
+                     rdfs:domain new-school2:Staff ,
+                                 new-school2:Student ;
+                     rdfs:range xsd:dateTime .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#staffID
+new-school2:staffID rdf:type owl:DatatypeProperty ;
+                    rdfs:domain new-school2:Staff ;
+                    rdfs:range xsd:string .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#studentID
+new-school2:studentID rdf:type owl:DatatypeProperty ;
+                      rdfs:domain new-school2:Student ;
+                      rdfs:range xsd:string .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#teach
+new-school2:teach rdf:type owl:DatatypeProperty ;
+                  rdfs:domain new-school2:Teacher ;
+                  rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Administrative
+new-school2:Administrative rdf:type owl:Class ;
+                           owl:equivalentClass new-school2:Maintenence ;
+                           rdfs:subClassOf new-school2:Non_Teaching .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Govt
+new-school2:Govt rdf:type owl:Class ;
+                 rdfs:subClassOf new-school2:School .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#House_Keeping
+new-school2:House_Keeping rdf:type owl:Class ;
+                          rdfs:subClassOf new-school2:Non_Teaching .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Junior_Student
+new-school2:Junior_Student rdf:type owl:Class ;
+                           rdfs:subClassOf new-school2:Student .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Maintenence
+new-school2:Maintenence rdf:type owl:Class ;
+                        rdfs:subClassOf new-school2:Non_Teaching .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Non_Teaching
+new-school2:Non_Teaching rdf:type owl:Class ;
+                         rdfs:subClassOf new-school2:Staff .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Private
+new-school2:Private rdf:type owl:Class ;
+                    rdfs:subClassOf new-school2:School .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#School
+new-school2:School rdf:type owl:Class .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Senior_Student
+new-school2:Senior_Student rdf:type owl:Class ;
+                           rdfs:subClassOf new-school2:Student .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Staff
+new-school2:Staff rdf:type owl:Class .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Student
+new-school2:Student rdf:type owl:Class .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Subject
+new-school2:Subject rdf:type owl:Class .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Supporting
+new-school2:Supporting rdf:type owl:Class ;
+                       rdfs:subClassOf new-school2:Non_Teaching .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Teacher
+new-school2:Teacher rdf:type owl:Class ;
+                    rdfs:subClassOf new-school2:Staff .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Business
+new-school2:Business rdf:type owl:NamedIndividual ,
+                              new-school2:Subject ;
+                     new-school2:learns new-school2:Science .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#GPIC
+new-school2:GPIC rdf:type owl:NamedIndividual ,
+                          new-school2:School ;
+                 new-school2:admits new-school2:Rick ;
+                 new-school2:employs new-school2:Tony .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Joya
+new-school2:Joya rdf:type owl:NamedIndividual ,
+                          new-school2:Non_Teaching ;
+                 new-school2:joinedON "2026-01-01T09:00:00"^^xsd:dateTime ;
+                 new-school2:staffID "N10001" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Morty
+new-school2:Morty rdf:type owl:NamedIndividual ,
+                           new-school2:Junior_Student ;
+                  new-school2:joinedON "2025-09-15T09:00:00"^^xsd:dateTime ;
+                  new-school2:studentID "S10002" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Mr_Colin
+new-school2:Mr_Colin rdf:type owl:NamedIndividual ,
+                              new-school2:Teacher ;
+                     new-school2:teaches new-school2:Business ;
+                     new-school2:staffID "T10002" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Nat
+new-school2:Nat rdf:type owl:NamedIndividual ,
+                         new-school2:Staff ;
+                owl:sameAs new-school2:Tony .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Tony
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Rick
+new-school2:Rick rdf:type owl:NamedIndividual ,
+                          new-school2:Senior_Student ,
+                          new-school2:Student ;
+                 new-school2:joinedON "2026-01-15T09:00:00"^^xsd:dateTime ;
+                 new-school2:studentID "S10001" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Science
+new-school2:Science rdf:type owl:NamedIndividual ,
+                             new-school2:Subject .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Summer
+new-school2:Summer rdf:type owl:NamedIndividual ,
+                            new-school2:Junior_Student ;
+                   new-school2:learns new-school2:Business ;
+                   new-school2:joinedON "2025-09-15T09:00:00"^^xsd:dateTime ;
+                   new-school2:studentID "S10002" .
+
+
+###  https://faithandjs.github.io/ontology-ke/new-school.owl#Tony
+new-school2:Tony rdf:type owl:NamedIndividual ,
+                          new-school2:Teacher ;
+                 new-school2:teaches new-school2:Rick ,
+                                     new-school2:Science ;
+                 new-school2:staffID "T10001" ;
+                 new-school2:teach "Science" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( new-school2:Junior_Student
+                new-school2:Non_Teaching
+                new-school2:Senior_Student
+                new-school2:Teacher
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

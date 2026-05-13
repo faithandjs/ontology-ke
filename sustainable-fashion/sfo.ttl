@@ -1,0 +1,761 @@
+@prefix : <http://www.semanticweb.org/ontologies/sustainable-fashion#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/ontologies/sustainable-fashion#> .
+
+<http://www.semanticweb.org/ontologies/sustainable-fashion> rdf:type owl:Ontology ;
+                                                             rdfs:comment "OWL 2 ontology for the sustainable fashion domain. Supports reasoning over materials, brands, certifications, and sustainability classifications." ;
+                                                             rdfs:label "Sustainable Fashion Ontology" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#comment
+rdfs:comment rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+rdfs:label rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#assessedBy
+:assessedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :ClothingItem ;
+            rdfs:range :SustainabilityAssessment ;
+            rdfs:comment "Links a clothing item to its sustainability assessment record." ;
+            rdfs:label "assessedBy" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#hasCertification
+:hasCertification rdf:type owl:ObjectProperty ;
+                  rdfs:domain [ rdf:type owl:Class ;
+                                owl:unionOf ( :Brand
+                                              :ClothingItem
+                                              :Facility
+                                              :Material
+                                            )
+                              ] ;
+                  rdfs:range :Certification ;
+                  rdfs:comment "Asserts that an entity holds a given certification." ;
+                  rdfs:label "hasCertification" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#hasMaterial
+:hasMaterial rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isMaterialOf ;
+             rdfs:domain :ClothingItem ;
+             rdfs:range :Material ;
+             rdfs:comment "Relates a clothing item to its constituent material(s)." ;
+             rdfs:label "hasMaterial" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#isMaterialOf
+:isMaterialOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :Material ;
+              rdfs:range :ClothingItem ;
+              rdfs:label "isMaterialOf" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#locatedInCountry
+:locatedInCountry rdf:type owl:ObjectProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :Facility ;
+                  rdfs:range :Country ;
+                  rdfs:label "locatedInCountry" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#manufacturedAt
+:manufacturedAt rdf:type owl:ObjectProperty ;
+                rdfs:domain :ClothingItem ;
+                rdfs:range :Facility ;
+                rdfs:comment "Links a clothing item to the facility where it was made." ;
+                rdfs:label "manufacturedAt" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#partOfSupplyChain
+:partOfSupplyChain rdf:type owl:ObjectProperty ,
+                            owl:TransitiveProperty ;
+                   rdfs:domain :Facility ;
+                   rdfs:range :Facility ;
+                   rdfs:label "partOfSupplyChain" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#producedBy
+:producedBy rdf:type owl:ObjectProperty ;
+            owl:inverseOf :produces ;
+            rdfs:domain :ClothingItem ;
+            rdfs:range :Brand ;
+            rdfs:comment "Links a clothing item to exactly one producing brand." ;
+            rdfs:label "producedBy" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#produces
+:produces rdf:type owl:ObjectProperty ;
+          rdfs:domain :Brand ;
+          rdfs:range :ClothingItem ;
+          rdfs:label "produces" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#suppliedBy
+:suppliedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Brand ;
+            rdfs:range :Facility ;
+            rdfs:comment "Links a brand to facilities in its supply chain." ;
+            rdfs:label "suppliedBy" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#usesProductionProcess
+:usesProductionProcess rdf:type owl:ObjectProperty ;
+                       rdfs:domain :ClothingItem ;
+                       rdfs:range :ProductionProcess ;
+                       rdfs:comment "Relates a clothing item to the process used in its production." ;
+                       rdfs:label "usesProductionProcess" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#biodegradable
+:biodegradable rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Material ;
+               rdfs:range xsd:boolean ;
+               rdfs:label "biodegradable" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#brandName
+:brandName rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Brand ;
+           rdfs:range xsd:string ;
+           rdfs:label "brandName" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#carbonFootprintKg
+:carbonFootprintKg rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :ClothingItem ;
+                   rdfs:range xsd:float ;
+                   rdfs:comment "CO2-equivalent kg emitted over the item's lifecycle." ;
+                   rdfs:label "carbonFootprintKg" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#certificationName
+:certificationName rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain :Certification ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "certificationName" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#fairWagePaid
+:fairWagePaid rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Facility ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "True if workers receive a living wage above legal minimum." ;
+              rdfs:label "fairWagePaid" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#hasNoEnvironmentalCert
+:hasNoEnvironmentalCert rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain :Material ;
+                        rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#hasNoEthicalCert
+:hasNoEthicalCert rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Brand ;
+                  rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#materialName
+:materialName rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Material ;
+              rdfs:range xsd:string ;
+              rdfs:label "materialName" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#minimumWagePaid
+:minimumWagePaid rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Facility ;
+                 rdfs:range xsd:boolean ;
+                 rdfs:label "minimumWagePaid" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#priceGBP
+:priceGBP rdf:type owl:DatatypeProperty ;
+          rdfs:domain :ClothingItem ;
+          rdfs:range xsd:float ;
+          rdfs:label "priceGBP" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#recycledContentPercentage
+:recycledContentPercentage rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :Material ;
+                           rdfs:range xsd:float ;
+                           rdfs:comment "Proportion (0–100) of the material derived from recycled sources." ;
+                           rdfs:label "recycledContentPercentage" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#renewableEnergyUsed
+:renewableEnergyUsed rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :Facility ;
+                     rdfs:range xsd:boolean ;
+                     rdfs:label "renewableEnergyUsed" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#sustainabilityScore
+:sustainabilityScore rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :SustainabilityAssessment ;
+                     rdfs:range xsd:float ;
+                     rdfs:comment "Composite sustainability score in range [0.0, 100.0]." ;
+                     rdfs:label "sustainabilityScore" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#toxicChemicalsUsed
+:toxicChemicalsUsed rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :ProductionProcess ;
+                    rdfs:range xsd:boolean ;
+                    rdfs:comment "True if the process employs toxic or hazardous chemicals." ;
+                    rdfs:label "toxicChemicalsUsed" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#waterUsageLitres
+:waterUsageLitres rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :ClothingItem ;
+                  rdfs:range xsd:float ;
+                  rdfs:label "waterUsageLitres" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#yearEstablished
+:yearEstablished rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain :Brand ;
+                 rdfs:range xsd:int ;
+                 rdfs:label "yearEstablished" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#BiodegradableMaterial
+:BiodegradableMaterial rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( :Material
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :biodegradable ;
+                                                                    owl:hasValue "true"^^xsd:boolean
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Brand
+:Brand rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Class ;
+                         owl:unionOf ( :EthicalBrand
+                                       :UnethicalBrand
+                                     )
+                       ] ;
+       rdfs:comment "A commercial entity that designs and markets clothing items." ;
+       rdfs:label "Brand" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Certification
+:Certification rdf:type owl:Class ;
+               rdfs:comment "A formal accreditation attesting to environmental or ethical compliance." ;
+               rdfs:label "Certification" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#CleanProcess
+:CleanProcess rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :ProductionProcess
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :toxicChemicalsUsed ;
+                                                           owl:hasValue "false"^^xsd:boolean
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :ProductionProcess .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#ClothingItem
+:ClothingItem rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasMaterial ;
+                                owl:minCardinality "1"^^xsd:nonNegativeInteger
+                              ] ;
+              rdfs:comment "A physical garment or accessory that can be purchased and worn." ;
+              rdfs:label "ClothingItem" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Country
+:Country rdf:type owl:Class ;
+         rdfs:comment "A geopolitical entity used to locate production facilities." ;
+         rdfs:label "Country" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#DyeingProcess
+:DyeingProcess rdf:type owl:Class ;
+               rdfs:subClassOf :ProductionProcess ;
+               rdfs:comment "Process applying colour to fabric or garments." ;
+               rdfs:label "DyeingProcess" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#EnvironmentalCertification
+:EnvironmentalCertification rdf:type owl:Class ;
+                            rdfs:subClassOf :Certification ;
+                            owl:disjointWith :EthicalCertification ;
+                            rdfs:comment "Certification attesting to environmental standards (e.g. GOTS, Bluesign)." ;
+                            rdfs:label "EnvironmentalCertification" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#EthicalBrand
+:EthicalBrand rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Brand
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasCertification ;
+                                                           owl:someValuesFrom :EthicalCertification
+                                                         ]
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :suppliedBy ;
+                                                           owl:someValuesFrom :FairWageFacility
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Brand ;
+              owl:disjointWith :UnethicalBrand ;
+              rdfs:comment "DERIVED — brand holding an ethical certification and paying fair wages." ;
+              rdfs:label "EthicalBrand" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#EthicalCertification
+:EthicalCertification rdf:type owl:Class ;
+                      rdfs:subClassOf :Certification ;
+                      rdfs:comment "Certification attesting to labour and social standards (e.g. Fair Trade, SA8000)." ;
+                      rdfs:label "EthicalCertification" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Facility
+:Facility rdf:type owl:Class ;
+          rdfs:comment "A physical site where clothing items are manufactured or processed." ;
+          rdfs:label "Facility" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#FairWageFacility
+:FairWageFacility rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :fairWagePaid ;
+                                        owl:hasValue "true"^^xsd:boolean
+                                      ] .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#FinishingProcess
+:FinishingProcess rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionProcess ;
+                  rdfs:comment "Post-production surface treatments applied to garments." ;
+                  rdfs:label "FinishingProcess" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#GreenFacility
+:GreenFacility rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Facility
+                                                          :FairWageFacility
+                                                          :RenewableEnergyFacility
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasCertification ;
+                                                            owl:someValuesFrom :EnvironmentalCertification
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Facility ;
+               rdfs:comment "DERIVED — facility using renewable energy, paying fair wages, and holding an environmental certification." ;
+               rdfs:label "GreenFacility" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#HighImpactMaterial
+:HighImpactMaterial rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( :NonBiodegradableMaterial
+                                                               :SyntheticFibre
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :hasNoEnvironmentalCert ;
+                                                                 owl:hasValue "true"^^xsd:boolean
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
+                    rdfs:subClassOf :Material ;
+                    owl:disjointWith :SustainableMaterial ;
+                    rdfs:comment "DERIVED — non-biodegradable material with negligible recycled content." ;
+                    rdfs:label "HighImpactMaterial" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Material
+:Material rdf:type owl:Class ;
+          rdfs:comment "A substance or fibre used in the composition of a clothing item." ;
+          rdfs:label "Material" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#NonBiodegradableMaterial
+:NonBiodegradableMaterial rdf:type owl:Class ;
+                          owl:equivalentClass [ owl:intersectionOf ( :Material
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty :biodegradable ;
+                                                                       owl:hasValue "false"^^xsd:boolean
+                                                                     ]
+                                                                   ) ;
+                                                rdf:type owl:Class
+                                              ] .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#OrganicFibre
+:OrganicFibre rdf:type owl:Class ;
+              rdfs:subClassOf :Material ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasCertification ;
+                                owl:someValuesFrom :EnvironmentalCertification
+                              ] ;
+              owl:disjointWith :SyntheticFibre ;
+              rdfs:comment "Natural fibre grown without synthetic pesticides or fertilisers." ;
+              rdfs:label "OrganicFibre" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#ProductionProcess
+:ProductionProcess rdf:type owl:Class ;
+                   rdfs:comment "A set of operations applied to produce or finish a clothing item." ;
+                   rdfs:label "ProductionProcess" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#RecycledMaterial
+:RecycledMaterial rdf:type owl:Class ;
+                  rdfs:subClassOf :Material ;
+                  rdfs:comment "Material obtained through recycling post-consumer or post-industrial waste." ;
+                  rdfs:label "RecycledMaterial" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#RenewableEnergyFacility
+:RenewableEnergyFacility rdf:type owl:Class ;
+                         owl:equivalentClass [ rdf:type owl:Restriction ;
+                                               owl:onProperty :renewableEnergyUsed ;
+                                               owl:hasValue "true"^^xsd:boolean
+                                             ] .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#SustainabilityAssessment
+:SustainabilityAssessment rdf:type owl:Class ;
+                          rdfs:comment "A structured evaluation record capturing sustainability metrics for an item." ;
+                          rdfs:label "SustainabilityAssessment" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#SustainableItem
+:SustainableItem rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :ClothingItem
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :hasMaterial ;
+                                                              owl:someValuesFrom :SustainableMaterial
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :producedBy ;
+                                                              owl:someValuesFrom :EthicalBrand
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf :ClothingItem ;
+                 owl:disjointWith :UnsustainableItem ;
+                 rdfs:comment "DERIVED — item using no high-impact materials, with an assessment, from an ethical brand." ;
+                 rdfs:label "SustainableItem" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#SustainableMaterial
+:SustainableMaterial rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :Material
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :hasCertification ;
+                                                                  owl:someValuesFrom :EnvironmentalCertification
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                     rdfs:subClassOf :Material .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#SyntheticFibre
+:SyntheticFibre rdf:type owl:Class ;
+                rdfs:subClassOf :Material ;
+                rdfs:comment "Fibre produced through chemical synthesis." ;
+                rdfs:label "SyntheticFibre" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#TransitionalMaterial
+:TransitionalMaterial rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Material
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :hasCertification ;
+                                                                   owl:someValuesFrom :EnvironmentalCertification
+                                                                 ]
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :biodegradable ;
+                                                                   owl:hasValue "false"^^xsd:boolean
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf :Material .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#UnethicalBrand
+:UnethicalBrand rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Brand
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasNoEthicalCert ;
+                                                             owl:hasValue "true"^^xsd:boolean
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Brand ;
+                rdfs:comment "DERIVED — brand that fails to satisfy EthicalBrand conditions." .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#UnsustainableItem
+:UnsustainableItem rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :ClothingItem
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMaterial ;
+                                                                owl:someValuesFrom :HighImpactMaterial
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf :ClothingItem ;
+                   rdfs:comment "DERIVED — item using at least one high-impact material and produced by a non-ethical brand." ;
+                   rdfs:label "UnsustainableItem" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#WeavingProcess
+:WeavingProcess rdf:type owl:Class ;
+                rdfs:subClassOf :ProductionProcess ;
+                rdfs:comment "Process interlacing fibres to create fabric." ;
+                rdfs:label "WeavingProcess" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#AssessmentA1
+:AssessmentA1 rdf:type owl:NamedIndividual ,
+                       :SustainabilityAssessment ;
+              :sustainabilityScore "82.5"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#AssessmentA2
+:AssessmentA2 rdf:type owl:NamedIndividual ,
+                       :SustainabilityAssessment ;
+              :sustainabilityScore "21.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Bangladesh
+:Bangladesh rdf:type owl:NamedIndividual ,
+                     :Country .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Bluesign
+:Bluesign rdf:type owl:NamedIndividual ,
+                   :EnvironmentalCertification ;
+          :certificationName "Bluesign Approved" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#ConventionalDyeing
+:ConventionalDyeing rdf:type owl:NamedIndividual ,
+                             :DyeingProcess ;
+                    :toxicChemicalsUsed "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#DhakaMill
+:DhakaMill rdf:type owl:NamedIndividual ,
+                    :Facility ;
+           :locatedInCountry :Bangladesh ;
+           :fairWagePaid "false"^^xsd:boolean ;
+           :minimumWagePaid "true"^^xsd:boolean ;
+           :renewableEnergyUsed "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#FairTrade
+:FairTrade rdf:type owl:NamedIndividual ,
+                    :EthicalCertification ;
+           :certificationName "Fair Trade Certified" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#GOTS
+:GOTS rdf:type owl:NamedIndividual ,
+               :EnvironmentalCertification ;
+      :certificationName "Global Organic Textile Standard" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#GRS
+:GRS rdf:type owl:NamedIndividual ,
+              :EnvironmentalCertification ;
+     :certificationName "Global Recycled Standard" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#LisbonFactory
+:LisbonFactory rdf:type owl:NamedIndividual ,
+                        :Facility ;
+               :hasCertification :Bluesign ;
+               :locatedInCountry :Portugal ;
+               :fairWagePaid "true"^^xsd:boolean ;
+               :minimumWagePaid "true"^^xsd:boolean ;
+               :renewableEnergyUsed "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#LowImpactDyeing
+:LowImpactDyeing rdf:type owl:NamedIndividual ,
+                          :DyeingProcess ;
+                 :toxicChemicalsUsed "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#MerinoSweater
+:MerinoSweater rdf:type owl:NamedIndividual ,
+                        :ClothingItem ;
+               :assessedBy :AssessmentA1 ;
+               :hasMaterial :MerinoWool ;
+               :manufacturedAt :LisbonFactory ;
+               :producedBy :PatagoniaInc ;
+               :usesProductionProcess :LowImpactDyeing ;
+               :carbonFootprintKg "6.1"^^xsd:float ;
+               :priceGBP "120.0"^^xsd:float ;
+               :waterUsageLitres "180.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#MerinoWool
+:MerinoWool rdf:type owl:NamedIndividual ,
+                     :OrganicFibre ;
+            :hasCertification :ZQMerino ;
+            :biodegradable "true"^^xsd:boolean ;
+            :materialName "Merino Wool" ;
+            :recycledContentPercentage "0.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#OrganicCotton
+:OrganicCotton rdf:type owl:NamedIndividual ,
+                        :OrganicFibre ;
+               :hasCertification :GOTS ;
+               :biodegradable "true"^^xsd:boolean ;
+               :materialName "Organic Cotton" ;
+               :recycledContentPercentage "0.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#OrganicCottonTee
+:OrganicCottonTee rdf:type owl:NamedIndividual ,
+                           :ClothingItem ;
+                  :assessedBy :AssessmentA1 ;
+                  :hasMaterial :OrganicCotton ;
+                  :manufacturedAt :LisbonFactory ;
+                  :producedBy :PatagoniaInc ;
+                  :usesProductionProcess :LowImpactDyeing ;
+                  :carbonFootprintKg "4.5"^^xsd:float ;
+                  :priceGBP "55.0"^^xsd:float ;
+                  :waterUsageLitres "210.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#PatagoniaFleecePullover
+:PatagoniaFleecePullover rdf:type owl:NamedIndividual ,
+                                  :ClothingItem ;
+                         :assessedBy :AssessmentA1 ;
+                         :hasMaterial :RecycledPolyester ;
+                         :manufacturedAt :LisbonFactory ;
+                         :producedBy :PatagoniaInc ;
+                         :usesProductionProcess :LowImpactDyeing ;
+                         :carbonFootprintKg "8.2"^^xsd:float ;
+                         :priceGBP "149.0"^^xsd:float ;
+                         :waterUsageLitres "120.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#PatagoniaInc
+:PatagoniaInc rdf:type owl:NamedIndividual ,
+                       :Brand ;
+              :hasCertification :FairTrade ;
+              :suppliedBy :LisbonFactory ;
+              :brandName "Patagonia" ;
+              :yearEstablished "1973"^^xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Portugal
+:Portugal rdf:type owl:NamedIndividual ,
+                   :Country .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#RecycledPolyester
+:RecycledPolyester rdf:type owl:NamedIndividual ,
+                            :RecycledMaterial ,
+                            :SyntheticFibre ;
+                   :hasCertification :GRS ;
+                   :biodegradable "false"^^xsd:boolean ;
+                   :materialName "Recycled Polyester (rPET)" ;
+                   :recycledContentPercentage "100.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#SA8000
+:SA8000 rdf:type owl:NamedIndividual ,
+                 :EthicalCertification ;
+        :certificationName "SA8000 Social Accountability" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#Sweden
+:Sweden rdf:type owl:NamedIndividual ,
+                 :Country .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#VirginPolyester
+:VirginPolyester rdf:type owl:NamedIndividual ,
+                          :SyntheticFibre ;
+                 :biodegradable "false"^^xsd:boolean ;
+                 :hasNoEnvironmentalCert "true"^^xsd:boolean ;
+                 :materialName "Virgin Polyester" ;
+                 :recycledContentPercentage "0.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#ZQMerino
+:ZQMerino rdf:type owl:NamedIndividual ,
+                   :EnvironmentalCertification ;
+          :certificationName "The New Zealand Merino Company" .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#ZaraGroup
+:ZaraGroup rdf:type owl:NamedIndividual ,
+                    :Brand ;
+           :suppliedBy :DhakaMill ;
+           :brandName "Zara" ;
+           :hasNoEthicalCert "true"^^xsd:boolean ;
+           :yearEstablished "1975"^^xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/sustainable-fashion#ZaraPolyesterDress
+:ZaraPolyesterDress rdf:type owl:NamedIndividual ,
+                             :ClothingItem ;
+                    :assessedBy :AssessmentA2 ;
+                    :hasMaterial :VirginPolyester ;
+                    :manufacturedAt :DhakaMill ;
+                    :producedBy :ZaraGroup ;
+                    :usesProductionProcess :ConventionalDyeing ;
+                    :carbonFootprintKg "31.0"^^xsd:float ;
+                    :priceGBP "29.99"^^xsd:float ;
+                    :waterUsageLitres "1800.0"^^xsd:float .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
